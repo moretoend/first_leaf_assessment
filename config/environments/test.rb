@@ -23,10 +23,13 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = :none
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
+
+  # Raise error on Unpermitted params
+  config.action_controller.action_on_unpermitted_parameters = :raise
 
   # Store uploaded files on the local file system in a temporary directory
   config.active_storage.service = :test
