@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg', '1.5.6'
 gem 'puma', '~> 3.11'
 gem 'sidekiq', '~> 7.2'
+gem 'simplecov', '~> 0.22', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
