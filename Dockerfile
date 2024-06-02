@@ -1,5 +1,8 @@
 FROM ruby:3.0.6
 
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
+
 # Add Debian security repository
 RUN echo "deb http://security.debian.org/debian-security bullseye-security main contrib non-free" > /etc/apt/sources.list
 
@@ -19,12 +22,14 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV RAILS_LOG_TO_STDOUT=true
 
-RUN mkdir /app
+RUN useradd -r -u 1000 app
+RUN mkdir /app && chown app:app -R /app
+USER 1000:1000
+WORKDIR /app
 
 # Copy these over first so that we can rely on Docker to intelligently run or not run bundle install based
 # on whether these files have changed or not.
-COPY Gemfile Gemfile.lock /app/
-WORKDIR /app
+COPY --chown=app:app Gemfile Gemfile.lock /app
 RUN bundle install
 
 # Copy over the rest of the app's files
