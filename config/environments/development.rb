@@ -47,6 +47,8 @@ Rails.application.configure do
   # Raise error on Unpermitted params
   config.action_controller.action_on_unpermitted_parameters = :raise
 
+  config.active_record.raise_on_assign_to_attr_readonly = true
+
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
