@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  KEY_SIZE = 100
-  private_constant :KEY_SIZE
-
   has_secure_password
 
   attr_readonly :key
@@ -16,6 +13,6 @@ class User < ApplicationRecord
   before_validation :generate_key, on: :create
 
   def generate_key
-    self.key = SecureRandom.alphanumeric(KEY_SIZE)
+    self.key = UserKeyGenerator.call
   end
 end
