@@ -105,8 +105,8 @@ describe 'GET /api/users' do
 
       it 'renders a message with error' do
         get '/api/users', headers: { 'Accept' => 'application/json' }, params: { invalid_param: 'senior web', invalid_param2: 'Some name' }
-        expect(json_response).to have_key('message')
-        expect(json_response['message']).to eq 'Unpermitted parameters were sent: invalid_param, invalid_param2'
+        expect(json_response).to have_key('errors')
+        expect(json_response['errors']).to eq ['Unpermitted parameters were sent: invalid_param, invalid_param2']
       end
     end
 

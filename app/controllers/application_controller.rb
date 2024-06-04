@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   private
 
   def render_params_error(exception)
-    @message = "Unpermitted parameters were sent: #{exception.params.join(", ")}"
+    @errors = ["Unpermitted parameters were sent: #{exception.params.join(", ")}"]
     render 'shared/error', status: :unprocessable_entity
   end
 end

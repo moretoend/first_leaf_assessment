@@ -1,1 +1,3 @@
-json.message @message
+json.errors do
+  json.array! @errors
+end
