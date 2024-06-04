@@ -19,8 +19,8 @@ describe User do
 
   it { is_expected.to validate_length_of(:password).is_at_most(60) }
 
-  it { is_expected.to validate_length_of(:account_key).is_at_most(100) }
-  it { is_expected.to validate_uniqueness_of(:account_key) }
+  it { is_expected.to validate_length_of(:account_key).is_at_most(100).allow_nil }
+  it { is_expected.to validate_uniqueness_of(:account_key).allow_nil }
 
   it { is_expected.to validate_length_of(:metadata).is_at_most(2000) }
 
