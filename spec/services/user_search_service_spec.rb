@@ -17,16 +17,18 @@ describe UserSearchService do
     end
 
     it 'filters only by :metadata' do
-      users_to_search = [create(:user, metadata: "senior web developer"), create(:user,  metadata: "senior devops")]
-      result = subject.call(metadata: "senior")
+      users_to_search = [
+        create(:user, metadata: "lead product solution architect junior"), create(:user,  metadata: "lead product solution architect senior")
+      ]
+      result = subject.call(metadata: "product solution architect")
       expect(result).to match_array users_to_search.reverse
     end
 
     it 'filters by all parameters' do
       users_to_search = [
-        create(:user, email: "test1@test.com", full_name: "Some name 1", metadata: "senior web developer"),
-        create(:user, email: "test2@test.com", full_name: "Some name 2", metadata: "senior devops")]
-      result = subject.call(email: "@test", full_name: "Some", metadata: "senior")
+        create(:user, email: "test1@test.com", full_name: "Some name 1", metadata: "lead product solution architect junior"),
+        create(:user, email: "test2@test.com", full_name: "Some name 2", metadata: "lead product solution architect senior")]
+      result = subject.call(email: "@test", full_name: "Some", metadata: "product solution architect")
       expect(result).to match_array users_to_search.reverse
     end
   end
