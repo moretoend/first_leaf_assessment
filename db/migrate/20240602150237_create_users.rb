@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :email, limit: 200, null: false
       t.string :phone_number, limit: 20, null: false
       t.string :full_name, limit: 200
-      t.string :password, limit: 100, null: false
+      t.string :password_digest, limit: 60, null: false
       t.string :key, limit: 100, null: false
       t.string :account_key, limit: 100
       t.string :metadata, limit: 2000
