@@ -97,19 +97,10 @@ describe 'GET /api/users' do
       end
     end
 
-    context 'when invalid params are sent' do
-      it 'renders status 422' do
+    it_behaves_like 'invalid params', [:invalid_param, :invalid_param2] do
+      before do
         get '/api/users', headers: { 'Accept' => 'application/json' }, params: { invalid_param: 'senior web', invalid_param2: 'Some name' }
-        expect(response).to have_http_status(422)
-      end
-
-      it 'renders a message with error' do
-        get '/api/users', headers: { 'Accept' => 'application/json' }, params: { invalid_param: 'senior web', invalid_param2: 'Some name' }
-        expect(json_response).to have_key('errors')
-        expect(json_response['errors']).to eq ['Unpermitted parameters were sent: invalid_param, invalid_param2']
       end
     end
-
-    
   end
 end
