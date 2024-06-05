@@ -27,17 +27,22 @@ docker compose build
 docker compose up -d
 ```
 
-5. It will start you application on `http://localhost:3005`
+5. Now you need to create the database and run migrations:
+```
+docker compose exec web rails db:create db:migrate
+```
    
 6. If you are on development environment, you can run a task to create fake data
 ```
 docker compose exec web rake dev:prime
 ```
 
-6. If you want to execute the specs, you can run:
+7. If you want to execute the specs, you can run:
 ```
 docker compose exec web rspec
 ```
+
+8. You application is started on `http://localhost:3005`
 
 ## How to test it?
 
