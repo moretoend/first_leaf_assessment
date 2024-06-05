@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create!(user_params)
+    AccountKeyGeneratorJob.perform_later(@user.key)
     render @user, status: :created
   rescue ActiveRecord::RecordInvalid => e
     @errors = e.record.errors.full_messages

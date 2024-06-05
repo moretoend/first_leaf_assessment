@@ -17,6 +17,12 @@ describe 'POST /api/users' do
       end.to change(User, :count).by(1)
     end
 
+    it 'enqueues job to generate account key' do
+      expect do  
+        post '/api/users', headers: headers, params: user_params.to_json
+      end.to have_enqueued_job(AccountKeyGeneratorJob)
+    end
+
     it 'returns the created user' do
       post '/api/users', headers: headers, params: user_params.to_json
       expected_response = user_params.slice(*%i[email phone_number full_name key metadata]).stringify_keys.merge('account_key' => nil)
@@ -39,6 +45,12 @@ describe 'POST /api/users' do
       expect do
         post '/api/users', headers: headers, params: user_params.to_json
       end.not_to change(User, :count)
+    end
+
+    it 'does not enqueue job to generate account key' do
+      expect do  
+        post '/api/users', headers: headers, params: user_params.to_json
+      end.not_to have_enqueued_job(AccountKeyGeneratorJob)
     end
 
     it 'returns an error message' do
