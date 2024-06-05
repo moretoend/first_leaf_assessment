@@ -28,11 +28,11 @@ describe AccountKeyGateway do
     httparty_response = double(code: 422)
     allow(HTTParty).to receive(:post).and_return(httparty_response)
     
-    expect { subject.call(user.email, user.key) }.to raise_error(described_class::KeyNotGenerated)
+    expect { subject.call(user.email, user.key) }.to raise_error(RequestError)
   end
 
   it 'raises an error when some HTTParty error is raised' do
     allow(HTTParty).to receive(:post).and_raise(HTTParty::UnsupportedURIScheme)
-    expect { subject.call(user.email, user.key) }.to raise_error(described_class::KeyNotGenerated)
+    expect { subject.call(user.email, user.key) }.to raise_error(RequestError)
   end
 end
