@@ -30,6 +30,7 @@ WORKDIR /app
 # Copy these over first so that we can rely on Docker to intelligently run or not run bundle install based
 # on whether these files have changed or not.
 COPY --chown=app:app Gemfile Gemfile.lock /app
+RUN chmod 655 /app/Gemfile.lock
 RUN bundle install
 
 # Copy over the rest of the app's files
