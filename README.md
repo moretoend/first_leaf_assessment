@@ -6,7 +6,7 @@ The main goal is to enroll new users and guarantee all of them has a unique key 
 
 ## How to start application
 
-### > DISCLAIMER 👀: I've commited .env file ONLY this test purposes. I would never do it on Production (I hope) 🤣
+### DISCLAIMER 👀: I've commited .env file ONLY this test purpose. I would never do it on Production (I hope) 🤣
 
 This application is upon Docker and Docker compose, so only a few commands to have things up:
 
