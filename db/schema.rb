@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_150237) do
     t.string "email", limit: 200, null: false
     t.string "phone_number", limit: 20, null: false
     t.string "full_name", limit: 200
-    t.string "password_digest", limit: 60, null: false
+    t.string "password_digest", limit: 72, null: false
     t.string "key", limit: 100, null: false
     t.string "account_key", limit: 100
     t.string "metadata", limit: 2000
